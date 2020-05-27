@@ -2,3 +2,16 @@
 	min-height: 100vh;
 	border: 0;
 }
+
+.ant-layout {
+	background: rgb(74, 82, 130);
+	background: linear-gradient(
+		180deg,
+		rgba(74, 82, 130, 1) 0%,
+		rgba(50, 55, 84, 1) 100%
+	);
+}
+
+.ant-card {
+	border-radius: 10px;
+}
