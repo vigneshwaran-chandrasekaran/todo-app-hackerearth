@@ -11,18 +11,24 @@ const { Title } = Typography;
 
 const SignupScheme = Yup.object({
 	email: Yup.string().email().required('Email required'),
+	password: Yup.string().required('Password required'),
+	firstName: Yup.string().required('Firstname required'),
+	lastName: Yup.string().required('Lastname required'),
 });
 
 export function Signup() {
 	const history = useHistory();
 
 	const initialValues = {
-		email: 'emailq',
+		email: 'emailq@sdl.com',
+		password: 'password',
+		firstName: 'firstName',
+		lastName: 'lastName',
 	};
 
 	function handleSignup(values, { setErrors, setSubmitting }) {
 		const CREDENTIALS = {
-			url: `auth/users/reset-password `,
+			url: `/users`,
 			method: 'post',
 			data: values,
 			setErrors,
@@ -38,9 +44,7 @@ export function Signup() {
 	}
 
 	function showSuccessMessage() {
-		message.success(
-			`Temporary password has been sent to your registered email. Redirecting to login...`
-		);
+		message.success(`Signup done. Redirecting to login...`);
 		redirectToLogin();
 	}
 
@@ -58,7 +62,7 @@ export function Signup() {
 						Signup
 					</Title>
 					<p className="center" style={{ marginBottom: '30px' }}>
-						Enter your email below.
+						Enter your details below.
 					</p>
 
 					<Formik
@@ -84,6 +88,51 @@ export function Signup() {
 								</Row>
 
 								<Row gutter={8}>
+									<Col span={24}>
+										<Form.Item
+											name="password"
+											hasFeedback={true}
+											showValidateSuccess={true}
+										>
+											<Input.Password
+												name="password"
+												placeholder="Type Your Password"
+											/>
+										</Form.Item>
+									</Col>
+								</Row>
+
+								<Row gutter={8}>
+									<Col span={24}>
+										<Form.Item
+											name="firstName"
+											hasFeedback={true}
+											showValidateSuccess={true}
+										>
+											<Input
+												name="firstName"
+												placeholder="Firstname"
+											/>
+										</Form.Item>
+									</Col>
+								</Row>
+
+								<Row gutter={8}>
+									<Col span={24}>
+										<Form.Item
+											name="lastName"
+											hasFeedback={true}
+											showValidateSuccess={true}
+										>
+											<Input
+												name="lastName"
+												placeholder="Lastname"
+											/>
+										</Form.Item>
+									</Col>
+								</Row>
+
+								<Row gutter={8}>
 									<Col span={24} className="center">
 										<SubmitButton
 											data-testid="form-save-btn"
@@ -91,7 +140,7 @@ export function Signup() {
 											disabled={isSubmitting}
 											className="login-btn"
 										>
-											Confirm
+											Signup
 										</SubmitButton>
 									</Col>
 								</Row>
