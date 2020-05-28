@@ -13,6 +13,8 @@ const { SubMenu } = Menu;
 
 export function findUrlPathId(path) {
 	switch (path) {
+		case '/todo':
+			return '1';
 		case '/input':
 			return '2';
 		case '/dropdown':
@@ -50,6 +52,12 @@ function Sidebar(props) {
 					defaultSelectedKeys={[key]}
 					selectedKeys={[key]}
 				>
+					<Menu.Item key="1">
+						<NavLink to="/todo" />
+						<HighlightOutlined />
+						<span>Todo</span>
+					</Menu.Item>
+
 					<SubMenu
 						key="sub2"
 						title={
