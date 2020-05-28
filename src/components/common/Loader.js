@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Lottie from 'react-lottie';
-import animationData from '../../assets/22928-loading.json';
+import animationData from '../../assets/Loader.json';
 
 export default function Loader() {
 	const loader = useSelector((state) => state.api.showLoader);

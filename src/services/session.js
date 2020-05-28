@@ -33,6 +33,7 @@ class Session {
 
 	logout() {
 		this.removeToken();
+		localStorage.clear();
 		window.location = process.env.REACT_APP_LOGIN_URL;
 	}
 }
