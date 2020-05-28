@@ -16,7 +16,7 @@ const LoginSchema = Yup.object({
 });
 
 const initialValues = {
-	email: 'emailw@sdl.com',
+	email: 'todo@gmail.com',
 	password: 'password',
 };
 

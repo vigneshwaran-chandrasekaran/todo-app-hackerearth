@@ -5,9 +5,8 @@ class Session {
 	constructor() {
 		if (!isEmpty(localStorage.getItem(LOCAL_KEY))) {
 			const data = JSON.parse(localStorage.getItem(LOCAL_KEY));
-			this.token = data.user.accessToken;
-			this.userId = data.user._id;
-			this.status = data.user.status;
+			this.token = data.accessToken;
+			this.userId = data._id;
 		}
 	}
 
@@ -16,16 +15,14 @@ class Session {
 	}
 
 	setToken(data) {
-		this.token = data.user.accessToken;
-		this.userId = data.user._id;
-		this.status = data.user.status;
+		this.token = data.accessToken;
+		this.userId = data._id;
 		localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
 	}
 
 	removeToken() {
 		this.token = null;
 		this.userId = null;
-		this.status = null;
 		localStorage.removeItem(LOCAL_KEY);
 	}
 

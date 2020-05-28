@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Form, Input, SubmitButton } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import jsSha512 from 'js-sha512';
 
 import { API } from '../services/api.request';
 
@@ -20,17 +21,18 @@ export function Signup() {
 	const history = useHistory();
 
 	const initialValues = {
-		email: 'emailq@sdl.com',
+		email: 'todo@gmail.com',
 		password: 'password',
-		firstName: 'firstName',
-		lastName: 'lastName',
+		firstName: 'Vigneshwaran',
+		lastName: 'C',
 	};
 
 	function handleSignup(values, { setErrors, setSubmitting }) {
+		const { password } = values;
 		const CREDENTIALS = {
 			url: `/users`,
 			method: 'post',
-			data: values,
+			data: { ...values, password: jsSha512(password) },
 			setErrors,
 		};
 
