@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import { useDispatch } from 'react-redux';
 import { SESSION } from '../../services';
-import { Sidebar } from '../common';
+import { Sidebar } from '../sidebar';
 
 const { Content } = Layout;
 
