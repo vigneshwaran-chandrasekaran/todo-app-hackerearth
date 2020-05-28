@@ -18,13 +18,6 @@ const rootReducer = (state, action) => {
 				status: null,
 				notification: state.api.notification,
 			},
-			authentication: {
-				user: {},
-				cards: [],
-				customerId: null,
-				tempPhotos: {},
-				plannerProfileStatus: {},
-			},
 			history: {
 				recent: '/login',
 			},
