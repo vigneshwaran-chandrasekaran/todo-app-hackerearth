@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../services';
+import { DeleteTodo } from '../todo';
 
 export default function TodoList() {
 	const [todos, setTodos] = useState([]);
@@ -26,6 +27,10 @@ export default function TodoList() {
 						<tr key={data._id}>
 							<td>{data.title}</td>
 							<td>{data.description}</td>
+							<td>{data.status}</td>
+							<td>
+								<DeleteTodo data={data} />
+							</td>
 							<td>{data.status}</td>
 						</tr>
 					))}
