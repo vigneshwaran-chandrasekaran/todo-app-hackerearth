@@ -10,19 +10,19 @@ function FormActionButtons({ onClose, isSubmitting }) {
 			<Row
 				data-testid="FormActionButtons"
 				type="flex"
-				justify="space-between"
-				style={{
-					position: 'absolute',
-					bottom: 0,
-					width: '100%',
-					borderTop: '1px solid #e8e8e8',
-					padding: '10px 16px',
-					textAlign: 'right',
-					left: 0,
-					background: '#fff',
-					borderRadius: '0 0 4px 4px',
-					zIndex: '9999',
-				}}
+				justify="flex-end"
+				// style={{
+				// 	position: 'absolute',
+				// 	bottom: 0,
+				// 	width: '100%',
+				// 	borderTop: '1px solid #e8e8e8',
+				// 	padding: '10px 16px',
+				// 	textAlign: 'right',
+				// 	left: 0,
+				// 	background: '#fff',
+				// 	borderRadius: '0 0 4px 4px',
+				// 	zIndex: '9999',
+				// }}
 			>
 				<Col
 					span={10}
@@ -60,7 +60,7 @@ function FormActionButtons({ onClose, isSubmitting }) {
 					</SubmitButton>
 				</Col>
 			</Row>
-			{process.env.NODE_ENV === 'development' && <Debug />}
+			{/* {process.env.NODE_ENV === 'development' && <Debug />} */}
 		</>
 	);
 }
