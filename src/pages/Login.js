@@ -42,7 +42,7 @@ export function Login() {
 				handleLoginSuccess(response);
 				resetForm({});
 				setSubmitting(false);
-				redirectToHomePage();
+				redirectingToDoPage();
 			}
 		});
 	}
@@ -52,8 +52,8 @@ export function Login() {
 		SESSION.setToken(data);
 	}
 
-	function redirectToHomePage() {
-		history.push('/home');
+	function redirectingToDoPage() {
+		history.push('/todo');
 	}
 
 	return (
