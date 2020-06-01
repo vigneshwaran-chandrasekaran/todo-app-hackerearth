@@ -22,16 +22,16 @@ export default function TodoList() {
 		<div>
 			<p>table</p>
 			{todos && todos.length > 0 && (
-				<table>
+				<table className="todo__list__table">
 					{todos.map((data) => (
 						<tr key={data._id}>
-							<td>{data.title}</td>
-							<td>{data.description}</td>
-							<td>{data.status}</td>
+							<td>
+								<div>{data.title}</div>
+								<div>{data.description}</div>
+							</td>
 							<td>
 								<DeleteTodo data={data} />
 							</td>
-							<td>{data.status}</td>
 						</tr>
 					))}
 				</table>

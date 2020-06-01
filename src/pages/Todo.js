@@ -4,7 +4,7 @@ import { TodoList } from '../components/todo';
 
 export default function Todo() {
 	return (
-		<div>
+		<div className="main-layout">
 			<TodoForm />
 			<TodoList />
 		</div>

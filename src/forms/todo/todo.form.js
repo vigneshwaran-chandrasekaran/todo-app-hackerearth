@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { message, Col, Row } from 'antd';
+import { message, Col, Row, Select } from 'antd';
 import { Form, Input } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
+
+const { Option } = Select;
 
 const TodoSchema = Yup.object({
 	title: Yup.string().required('Title required'),
@@ -73,7 +75,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 			{({ isSubmitting, setFieldValue }) => (
 				<Form layout="vertical" hideRequiredMark>
 					<Row gutter={8}>
-						<Col span={12}>
+						<Col span={8}>
 							<Form.Item
 								name="title"
 								label="Title"
@@ -83,7 +85,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 								<Input name="title" placeholder="Title" />
 							</Form.Item>
 						</Col>
-						<Col span={12}>
+						<Col span={8}>
 							<Form.Item
 								name="description"
 								label="Description"
@@ -94,6 +96,45 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 									name="description"
 									placeholder="Description"
 								/>
+							</Form.Item>
+						</Col>
+
+						<Col span={8}>
+							<Form.Item
+								name="label"
+								label="Label"
+								hasFeedback={true}
+								showValidateSuccess={true}
+							>
+								<Select
+									showSearch
+									name="Label"
+									style={{ width: '100%' }}
+									placeholder={'Select label'}
+									allowClear={true}
+									optionFilterProp="children"
+									onChange={(data) => {
+										setFieldValue('label', data);
+									}}
+									filterOption={(input, option) =>
+										option.props.children
+											.toLowerCase()
+											.indexOf(input.toLowerCase()) >= 0
+									}
+								>
+									<Option key={1} value={1}>
+										PERSONAL
+									</Option>
+									<Option key={2} value={2}>
+										WORK
+									</Option>
+									<Option key={3} value={3}>
+										SHOPPING
+									</Option>
+									<Option key={4} value={4}>
+										OTHER
+									</Option>
+								</Select>
 							</Form.Item>
 						</Col>
 					</Row>
