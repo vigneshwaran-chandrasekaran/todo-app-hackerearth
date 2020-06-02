@@ -29,12 +29,37 @@
 	.kanban__group {
 		width: 100%;
 		margin: 5px;
+		padding: 5px;
+		background-color: #ccc;
+		border-radius: 5px;
+
 		.kanban__box {
+			position: relative;
 			width: 100%;
 			padding: 10px;
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
+			background-color: #ffffff;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			.kanban__box__actions {
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-color: yellow;
+				border-radius: 5px;
+				opacity: 0;
+			}
+
+			&:hover {
+				.kanban__box__actions {
+					opacity: 1;
+				}
+			}
 		}
 	}
 }

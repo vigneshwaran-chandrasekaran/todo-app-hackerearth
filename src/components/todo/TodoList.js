@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../services';
-import { DeleteTodo } from '../todo';
+import { DeleteTodo, TodoBox } from '../todo';
 import _ from 'lodash';
 
 export default function TodoList() {
@@ -31,7 +31,6 @@ export default function TodoList() {
 
 	return (
 		<div>
-			<p>table</p>
 			{/* {todos && todos.length > 0 && (
 				<table className="todo__list__table">
 					<tbody>
@@ -54,10 +53,7 @@ export default function TodoList() {
 					Object.entries(grouped).map(([key, values], i) => (
 						<div key={i} className="kanban__group">
 							{values.map((data) => (
-								<div key={data._id} className="kanban__box">
-									<h4>{data.title}</h4>
-									<div>{data.description}</div>
-								</div>
+								<TodoBox key={data._id} data={data} />
 							))}
 						</div>
 					))}
