@@ -8,6 +8,8 @@ import Router from './router';
 import store from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
 
+console.log('build = ', process.env.NODE_ENV);
+
 ReactDOM.render(
 	<Provider store={store}>
 		<Router />
