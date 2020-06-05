@@ -7,9 +7,9 @@ export const STATUS = [
 	// { id: 4, key: 'Deleted' },
 ];
 
-export const LABEL = {
-	PERSONAL: 1,
-	WORK: 2,
-	SHOPPING: 3,
-	OTHER: 4,
-};
+export const TODO_LABEL = [
+	{ id: 1, key: 'PERSONAL' },
+	{ id: 2, key: 'WORK' },
+	{ id: 3, key: 'SHOPPING' },
+	{ id: 4, key: 'OTHER' },
+];

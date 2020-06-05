@@ -1,6 +1,8 @@
-import { Modal, Button } from 'antd';
+import React, { useState } from 'react';
+import { Drawer, Modal, Button } from 'antd';
+import { TodoForm } from '../todo';
 
-class App extends React.Component {
+export default class App extends React.Component {
 	state = { visible: false };
 
 	showModal = () => {
@@ -35,9 +37,7 @@ class App extends React.Component {
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}
 				>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
+					<TodoForm />
 				</Modal>
 			</div>
 		);

@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
+import { TODO_LABEL } from '../../helpers/';
 
 const { Option } = Select;
 
@@ -14,7 +15,7 @@ const TodoSchema = Yup.object({
 	title: Yup.string().required('Title required'),
 	description: Yup.string().required('Description required'),
 	// dueDate: Yup.number().required('Duedate code required'),
-	// label: Yup.number().required('Label code required'),
+	label: Yup.number().required('Label code required'),
 });
 
 function TodoForm({ onClose, editMode, editableTodo }) {
@@ -75,7 +76,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 			{({ isSubmitting, setFieldValue }) => (
 				<Form layout="vertical" hideRequiredMark>
 					<Row gutter={8}>
-						<Col span={8}>
+						<Col span={24}>
 							<Form.Item
 								name="title"
 								label="Title"
@@ -85,7 +86,9 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 								<Input name="title" placeholder="Title" />
 							</Form.Item>
 						</Col>
-						<Col span={8}>
+					</Row>
+					<Row gutter={8}>
+						<Col span={24}>
 							<Form.Item
 								name="description"
 								label="Description"
@@ -98,8 +101,9 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 								/>
 							</Form.Item>
 						</Col>
-
-						<Col span={8}>
+					</Row>
+					<Row gutter={8}>
+						<Col span={24}>
 							<Form.Item
 								name="label"
 								label="Label"
