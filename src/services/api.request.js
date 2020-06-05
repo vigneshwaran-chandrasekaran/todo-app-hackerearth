@@ -5,7 +5,7 @@ import { isArray } from 'lodash';
 import axios from './api.config';
 import { apiActions } from '../store/actions';
 import store from '../store/configureStore';
-// import { handle401Error } from './authentication';
+import { SESSION } from './session';
 
 class ApiRequestClass {
 	// constructor() {
@@ -70,7 +70,11 @@ class ApiRequestClass {
 					/**
 					 * 401 is authentication error like session failure
 					 */
-					// handle401Error();
+					toaster.error('Session expired');
+
+					setTimeout(() => {
+						SESSION.logout();
+					}, 1000);
 				} else if (status === 422) {
 					/**
 					 * 422 error is form validation error
