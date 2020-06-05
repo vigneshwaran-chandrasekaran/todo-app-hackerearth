@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Modal, Button } from 'antd';
+import { Modal, Button } from 'antd';
 import { TodoForm } from '../todo';
 
 export default class App extends React.Component {
@@ -29,13 +29,14 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<Button type="primary" onClick={this.showModal}>
-					Open Modal
+					Modal Form
 				</Button>
 				<Modal
 					title="Basic Modal"
 					visible={this.state.visible}
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}
+					footer={null}
 				>
 					<TodoForm />
 				</Modal>
