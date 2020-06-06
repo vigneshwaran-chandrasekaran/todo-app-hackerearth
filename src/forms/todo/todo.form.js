@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { message, Col, Row, Select } from 'antd';
 import { Form, Input, DatePicker } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
 import { TODO_LABEL } from '../../helpers/constants';
+import { updatedTodoList } from '../../store/actions/api.actions';
 
 const { Option } = Select;
 
@@ -60,6 +60,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 				resetForm();
 				setTodoLabel(1);
 				setDueDate(TOMORROW);
+				dispatch(updatedTodoList());
 			})
 			.finally(() => {
 				setSubmitting(false);
