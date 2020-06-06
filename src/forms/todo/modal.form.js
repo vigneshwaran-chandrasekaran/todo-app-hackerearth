@@ -6,45 +6,43 @@ import { TodoForm } from '../todo';
 import { editTodo } from '../../store/actions/api.actions';
 
 export default function ModalForm() {
-	const dispatch = useDispatch();
 	const [visible, setVisible] = useState(false);
+	const [formData, setFormData] = useState({});
+	const dispatch = useDispatch();
 	const { editTodoData } = useSelector((state) => state.api);
 
 	useEffect(() => {
 		if (!isEmpty(editTodoData)) {
 			setVisible(true);
+			setFormData(editTodoData);
 		}
 	}, [editTodoData]);
 
-	const showModal = () => {
+	const showForm = () => {
 		dispatch(editTodo());
 		setVisible(true);
+		setFormData({});
 	};
 
-	const handleOk = (e) => {
-		setVisible(false);
-	};
-
-	const handleCancel = (e) => {
+	const onClose = () => {
 		setVisible(false);
 	};
 
 	return (
 		<div>
-			<Button type="primary" onClick={showModal}>
+			<Button type="primary" onClick={showForm}>
 				Add new todo
 			</Button>
 			<Modal
 				title="Add new todo"
 				visible={visible}
-				onOk={handleOk}
-				onCancel={handleCancel}
+				onCancel={onClose}
 				footer={null}
 			>
 				<TodoForm
-					onClose={handleOk}
-					editMode={!isEmpty(editTodoData)}
-					editableTodoData={editTodoData}
+					onClose={onClose}
+					editMode={!isEmpty(formData)}
+					editableTodoData={formData}
 				/>
 			</Modal>
 		</div>

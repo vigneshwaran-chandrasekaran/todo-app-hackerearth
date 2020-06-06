@@ -7,9 +7,7 @@ import { editTodo } from '../../store/actions/api.actions';
 
 export default function DrawerForm() {
 	const [visible, setVisible] = useState(false);
-
 	const [formData, setFormData] = useState({});
-
 	const dispatch = useDispatch();
 	const { editTodoData } = useSelector((state) => state.api);
 
@@ -20,7 +18,7 @@ export default function DrawerForm() {
 		}
 	}, [editTodoData]);
 
-	const showDrawer = () => {
+	const showForm = () => {
 		dispatch(editTodo());
 		setVisible(true);
 		setFormData({});
@@ -31,9 +29,9 @@ export default function DrawerForm() {
 	};
 
 	return (
-		<>
-			<Button type="primary" onClick={showDrawer}>
-				Drawer Form
+		<div>
+			<Button type="primary" onClick={showForm}>
+				Add new todo
 			</Button>
 			<Drawer
 				title="Add new todo"
@@ -43,13 +41,12 @@ export default function DrawerForm() {
 				onClose={onClose}
 				visible={visible}
 			>
-				{/* <TodoForm /> */}
 				<TodoForm
 					onClose={onClose}
 					editMode={!isEmpty(formData)}
 					editableTodoData={formData}
 				/>
 			</Drawer>
-		</>
+		</div>
 	);
 }
