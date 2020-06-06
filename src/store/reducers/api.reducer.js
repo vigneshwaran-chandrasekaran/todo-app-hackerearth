@@ -2,6 +2,7 @@ const initialState = {
 	showLoader: false,
 	status: null,
 	notification: null,
+	todoListUpdated: '',
 };
 
 export function api(state = initialState, action) {
@@ -18,6 +19,8 @@ export function api(state = initialState, action) {
 			return { ...state, showLoader: false };
 		case 'NOTIFICATION_REF':
 			return { ...state, notification: action.reference };
+		case 'UPDATE_TODO_LIST':
+			return { ...state, todoListUpdated: action.payload };
 		default:
 			return state;
 	}

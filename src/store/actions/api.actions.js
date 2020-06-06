@@ -1,3 +1,9 @@
+import moment from 'moment';
+
+export function timeStamp() {
+	return moment().format('dddd, MMMM Do YYYY, h:mm:ss a');
+}
+
 export const apiActions = {
 	request,
 	success,
@@ -35,5 +41,12 @@ function showLoader() {
 function hideLoader() {
 	return {
 		type: 'HIDE_LOADER',
+	};
+}
+
+export function updatedTodoList() {
+	return {
+		type: 'UPDATE_TODO_LIST',
+		payload: timeStamp(),
 	};
 }

@@ -1,9 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import { Menu, Dropdown, message } from 'antd';
 import { API } from '../../services';
 import { TODO_STATUS } from '../../helpers/constants';
+import { updatedTodoList } from '../../store/actions/api.actions';
 
 export default function TodoStatusChange({ data }) {
+	const dispatch = useDispatch();
+
 	function handleStatusEdit(e) {
 		const CREDENTIALS = {
 			url: `todos/${data._id}`,
@@ -15,6 +20,7 @@ export default function TodoStatusChange({ data }) {
 
 		API.common(CREDENTIALS).then(() => {
 			message.success('Task status changed successfully');
+			dispatch(updatedTodoList());
 		});
 	}
 

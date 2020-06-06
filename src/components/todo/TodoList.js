@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { API } from '../../services';
 import { DeleteTodo, TodoBox, TodoStatus } from '../todo';
 import { mapValues, groupBy } from 'lodash';
@@ -7,6 +9,8 @@ import { TODO_STATUS } from '../../helpers/constants';
 export default function TodoList() {
 	const [todos, setTodos] = useState([]);
 	const [grouped, setGrouped] = useState([]);
+
+	const { todoListUpdated } = useSelector((state) => state.api);
 
 	useEffect(() => {
 		const CREDENTIALS = {
@@ -28,7 +32,7 @@ export default function TodoList() {
 				setGrouped(grouped);
 			})
 			.finally(() => {});
-	}, []);
+	}, [todoListUpdated]);
 
 	return (
 		<div className="kanban">
