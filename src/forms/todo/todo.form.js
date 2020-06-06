@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
-import { TODO_LABEL } from '../../helpers/';
+import { TODO_LABEL } from '../../helpers/constants';
 
 const { Option } = Select;
 
@@ -20,28 +20,22 @@ const TodoSchema = Yup.object({
 	label: Yup.number().required('Label code required'),
 });
 
+const TOMORROW = moment().add(1, 'days');
+
 function TodoForm({ onClose, editMode, editableTodo }) {
 	const dispatch = useDispatch();
 	const [dueDate, setDueDate] = useState();
+	const [todoLabel, setTodoLabel] = useState();
 
 	const initialValues = {
 		title: editMode ? editableTodo.title : undefined,
 		description: editMode ? editableTodo.description : undefined,
-		dueDate: editMode ? editableTodo.phone : moment(),
+		dueDate: editMode ? editableTodo.phone : TOMORROW,
 		label: editMode ? editableTodo.label : 3,
 	};
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
-		/**
-		 * below two keys no needed for post call
-		 */
-
-		// let data = {
-		// 	...values,
-		// 	phone: values.phone.toString(),
-		// };
 		console.log('values visit', values);
-
 		let url = `todos`;
 
 		if (editMode) {
@@ -64,6 +58,8 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 			.then(() => {
 				showSuccessMessage(values);
 				resetForm();
+				setTodoLabel(1);
+				setDueDate(TOMORROW);
 			})
 			.finally(() => {
 				setSubmitting(false);
@@ -153,26 +149,16 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 									allowClear={true}
 									optionFilterProp="children"
 									onChange={(data) => {
+										console.log('setTodoLabel', data);
+										setTodoLabel(data);
 										setFieldValue('label', data);
 									}}
-									filterOption={(input, option) =>
-										option.props.children
-											.toLowerCase()
-											.indexOf(input.toLowerCase()) >= 0
-									}
 								>
-									<Option key={1} value={1}>
-										PERSONAL
-									</Option>
-									<Option key={2} value={2}>
-										WORK
-									</Option>
-									<Option key={3} value={3}>
-										SHOPPING
-									</Option>
-									<Option key={4} value={4}>
-										OTHER
-									</Option>
+									{TODO_LABEL.map(({ id, key }) => (
+										<Option key={id} value={id}>
+											{key}
+										</Option>
+									))}
 								</Select>
 							</Form.Item>
 						</Col>

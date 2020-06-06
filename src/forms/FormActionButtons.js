@@ -60,7 +60,7 @@ function FormActionButtons({ onClose, isSubmitting }) {
 					</SubmitButton>
 				</Col>
 			</Row>
-			{/* {process.env.NODE_ENV === 'development' && <Debug />} */}
+			{process.env.NODE_ENV === 'development' && <Debug />}
 		</>
 	);
 }
