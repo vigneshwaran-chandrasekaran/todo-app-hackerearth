@@ -1,44 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
+import { isEmpty } from 'lodash';
 import { TodoForm } from '../todo';
+import { editTodo } from '../../store/actions/api.actions';
 
-export default class App extends React.Component {
-	state = { visible: false };
+export default function ModalForm() {
+	const dispatch = useDispatch();
+	const [visible, setVisible] = useState(false);
+	const { editTodoData } = useSelector((state) => state.api);
 
-	showModal = () => {
-		this.setState({
-			visible: true,
-		});
+	useEffect(() => {
+		if (!isEmpty(editTodoData)) {
+			setVisible(true);
+		}
+	}, [editTodoData]);
+
+	const showModal = () => {
+		dispatch(editTodo());
+		setVisible(true);
 	};
 
-	handleOk = (e) => {
-		this.setState({
-			visible: false,
-		});
+	const handleOk = (e) => {
+		setVisible(false);
 	};
 
-	handleCancel = (e) => {
-		this.setState({
-			visible: false,
-		});
+	const handleCancel = (e) => {
+		setVisible(false);
 	};
 
-	render() {
-		return (
-			<div>
-				<Button type="primary" onClick={this.showModal}>
-					Add new todo
-				</Button>
-				<Modal
-					title="Add new todo"
-					visible={this.state.visible}
-					onOk={this.handleOk}
-					onCancel={this.handleCancel}
-					footer={null}
-				>
-					<TodoForm />
-				</Modal>
-			</div>
-		);
-	}
+	return (
+		<div>
+			<Button type="primary" onClick={showModal}>
+				Add new todo
+			</Button>
+			<Modal
+				title="Add new todo"
+				visible={visible}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={null}
+			>
+				<TodoForm
+					onClose={handleOk}
+					editMode={!isEmpty(editTodoData)}
+					editableTodoData={editTodoData}
+				/>
+			</Modal>
+		</div>
+	);
 }

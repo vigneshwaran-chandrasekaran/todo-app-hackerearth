@@ -50,3 +50,11 @@ export function updatedTodoList() {
 		payload: timeStamp(),
 	};
 }
+
+export function editTodo(data = {}) {
+	// console.log('editTodo', data);
+	return {
+		type: 'EDIT_TODO',
+		payload: data,
+	};
+}

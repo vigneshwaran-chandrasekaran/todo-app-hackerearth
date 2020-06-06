@@ -2,9 +2,15 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
+import { editTodo } from '../../store/actions/api.actions';
 
 export default function TodoEdit({ data }) {
 	const dispatch = useDispatch();
 
-	return <Button icon={<EditOutlined />} />;
+	function handleEdit() {
+		console.log('handleEdit', data);
+		dispatch(editTodo(data));
+	}
+
+	return <Button onClick={handleEdit} icon={<EditOutlined />} />;
 }

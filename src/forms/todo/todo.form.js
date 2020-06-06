@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { message, Col, Row, Select } from 'antd';
-import { Form, Input, DatePicker } from 'formik-antd';
+import { message, Col, Row } from 'antd';
+import { Form, Input, DatePicker, Select } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { isEmpty } from 'lodash';
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
 import { TODO_LABEL } from '../../helpers/constants';
@@ -22,24 +23,30 @@ const TodoSchema = Yup.object({
 
 const TOMORROW = moment().add(1, 'days');
 
-function TodoForm({ onClose, editMode, editableTodo }) {
+function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
 	const dispatch = useDispatch();
 	const [dueDate, setDueDate] = useState();
 	const [todoLabel, setTodoLabel] = useState();
 
-	const initialValues = {
-		title: editMode ? editableTodo.title : undefined,
-		description: editMode ? editableTodo.description : undefined,
-		dueDate: editMode ? editableTodo.phone : TOMORROW,
-		label: editMode ? editableTodo.label : 3,
+	const formInitialValues = {
+		title: editMode ? editableTodoData.title : undefined,
+		description: editMode ? editableTodoData.description : undefined,
+		dueDate: editMode ? moment(editableTodoData.dueDate) : TOMORROW,
+		label: editMode ? editableTodoData.label : 1,
 	};
+
+	useEffect(() => {
+		if (!isEmpty(editableTodoData)) {
+			setDueDate(moment(editableTodoData.dueDate));
+		}
+	}, [editableTodoData]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		console.log('values visit', values);
 		let url = `todos`;
 
 		if (editMode) {
-			url = `${url}/${editableTodo._id}`;
+			url = `${url}/${editableTodoData._id}`;
 		}
 
 		const CREDENTIALS = {
@@ -56,11 +63,12 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 
 		API.common(CREDENTIALS)
 			.then(() => {
+				dispatch(updatedTodoList());
 				showSuccessMessage(values);
 				resetForm();
 				setTodoLabel(1);
 				setDueDate(TOMORROW);
-				dispatch(updatedTodoList());
+				onClose();
 			})
 			.finally(() => {
 				setSubmitting(false);
@@ -73,8 +81,10 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 	}
 
 	return (
+		// `enableReinitialize` will solve the form not updating issue
 		<Formik
-			initialValues={initialValues}
+			enableReinitialize
+			initialValues={formInitialValues}
 			validationSchema={TodoSchema}
 			onSubmit={handleSubmit}
 		>
@@ -109,9 +119,6 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 					</Row>
 					<Row>
 						<Col span={24}>
-							{/* <label className="ant-form-item-label">
-								Duedate
-							</label> */}
 							<Form.Item
 								name="dueDate"
 								label="Duedate"
@@ -144,7 +151,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 							>
 								<Select
 									showSearch
-									name="Label"
+									name="label"
 									style={{ width: '100%' }}
 									placeholder={'Select label'}
 									allowClear={true}
@@ -166,7 +173,7 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 					</Row>
 
 					<FormActionButtons
-						// onClose={onClose}
+						onClose={onClose}
 						isSubmitting={isSubmitting}
 					/>
 				</Form>
@@ -176,8 +183,9 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 }
 
 TodoForm.propTypes = {
-	// editMode: PropTypes.bool.isRequired,
-	// onClose: PropTypes.func.isRequired,
+	editMode: PropTypes.bool.isRequired,
+	onClose: PropTypes.func.isRequired,
+	editableTodoData: PropTypes.object.isRequired,
 };
 
 export { TodoForm };

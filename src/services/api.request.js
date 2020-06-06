@@ -66,6 +66,8 @@ class ApiRequestClass {
 				}
 				if (status === 500) {
 					toaster.error(error.message);
+				} else if (status === 400) {
+					toaster.error(data.message);
 				} else if (status === 401) {
 					/**
 					 * 401 is authentication error like session failure

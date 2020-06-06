@@ -3,6 +3,7 @@ const initialState = {
 	status: null,
 	notification: null,
 	todoListUpdated: '',
+	editTodoData: {},
 };
 
 export function api(state = initialState, action) {
@@ -21,6 +22,8 @@ export function api(state = initialState, action) {
 			return { ...state, notification: action.reference };
 		case 'UPDATE_TODO_LIST':
 			return { ...state, todoListUpdated: action.payload };
+		case 'EDIT_TODO':
+			return { ...state, editTodoData: action.payload };
 		default:
 			return state;
 	}

@@ -7,23 +7,7 @@ import { Debug } from './Debug';
 function FormActionButtons({ onClose, isSubmitting }) {
 	return (
 		<>
-			<Row
-				data-testid="FormActionButtons"
-				type="flex"
-				justify="flex-end"
-				// style={{
-				// 	position: 'absolute',
-				// 	bottom: 0,
-				// 	width: '100%',
-				// 	borderTop: '1px solid #e8e8e8',
-				// 	padding: '10px 16px',
-				// 	textAlign: 'right',
-				// 	left: 0,
-				// 	background: '#fff',
-				// 	borderRadius: '0 0 4px 4px',
-				// 	zIndex: '9999',
-				// }}
-			>
+			<Row data-testid="FormActionButtons" type="flex" justify="flex-end">
 				<Col
 					span={10}
 					style={{
@@ -41,7 +25,7 @@ function FormActionButtons({ onClose, isSubmitting }) {
 						textAlign: 'right',
 					}}
 				>
-					{/* <Button
+					<Button
 						data-testid="form-close-btn"
 						style={{
 							marginRight: 8,
@@ -49,7 +33,7 @@ function FormActionButtons({ onClose, isSubmitting }) {
 						onClick={onClose}
 					>
 						Close
-					</Button> */}
+					</Button>
 
 					<SubmitButton
 						data-testid="form-save-btn"
@@ -67,7 +51,7 @@ function FormActionButtons({ onClose, isSubmitting }) {
 
 FormActionButtons.propTypes = {
 	isSubmitting: PropTypes.bool.isRequired,
-	// onClose: PropTypes.func.isRequired,
+	onClose: PropTypes.func.isRequired,
 };
 
 export { FormActionButtons };
