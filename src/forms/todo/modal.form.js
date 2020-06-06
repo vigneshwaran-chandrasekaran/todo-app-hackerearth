@@ -32,7 +32,7 @@ export default class App extends React.Component {
 					Modal Form
 				</Button>
 				<Modal
-					title="Basic Modal"
+					title="Add new todo"
 					visible={this.state.visible}
 					onOk={this.handleOk}
 					onCancel={this.handleCancel}

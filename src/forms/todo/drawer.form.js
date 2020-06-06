@@ -19,8 +19,8 @@ export default function DrawerForm() {
 				Drawer Form
 			</Button>
 			<Drawer
-				title="Add new Todo"
-				width={720}
+				title="Add new todo"
+				width={500}
 				placement="right"
 				closable={false}
 				onClose={onClose}

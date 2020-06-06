@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { API } from '../../services';
 import { DeleteTodo, TodoBox, TodoStatus } from '../todo';
 import { mapValues, groupBy } from 'lodash';
+import { TODO_STATUS } from '../../helpers/constants';
 
 export default function TodoList() {
 	const [todos, setTodos] = useState([]);
-	const [grouped, setGrouped] = useState();
+	const [grouped, setGrouped] = useState([]);
 
 	useEffect(() => {
 		const CREDENTIALS = {
@@ -30,35 +31,16 @@ export default function TodoList() {
 	}, []);
 
 	return (
-		<div>
-			{/* {todos && todos.length > 0 && (
-				<table className="todo__list__table">
-					<tbody>
-						{todos.map((data) => (
-							<tr key={data._id}>
-								<td>
-									<div>{data.title}</div>
-									<div>{data.description}</div>
-								</td>
-								<td>
-									<DeleteTodo data={data} />
-								</td>
-							</tr>
+		<div className="kanban">
+			{TODO_STATUS.map((data) => (
+				<div key={data.id} className="kanban__group">
+					<TodoStatus data={data} />
+					{grouped[data.id] &&
+						grouped[data.id].map((todo) => (
+							<TodoBox key={todo._id} data={todo} />
 						))}
-					</tbody>
-				</table>
-			)} */}
-			<div className="kanban">
-				{grouped &&
-					Object.entries(grouped).map(([key, values], i) => (
-						<div key={i} className="kanban__group">
-							<TodoStatus data={values[0]} />
-							{values.map((data) => (
-								<TodoBox key={data._id} data={data} />
-							))}
-						</div>
-					))}
-			</div>
+				</div>
+			))}
 		</div>
 	);
 }
