@@ -1,6 +1,6 @@
 export const USER_INFO_LOCAL_STORAGE_KEY = 'toDoUserInfo';
 
-export const STATUS = [
+export const TODO_STATUS = [
 	{ id: 1, key: 'New' },
 	{ id: 2, key: 'Inprogress' },
 	{ id: 3, key: 'Completed' },

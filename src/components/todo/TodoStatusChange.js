@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Dropdown, message } from 'antd';
 import { API } from '../../services';
-import { STATUS } from '../../helpers/constants';
+import { TODO_STATUS } from '../../helpers/constants';
 
 export default function TodoStatusChange({ data }) {
 	function handleStatusEdit(e) {
@@ -20,7 +20,7 @@ export default function TodoStatusChange({ data }) {
 
 	const menu = (
 		<Menu onClick={handleStatusEdit}>
-			{STATUS.map((data) => (
+			{TODO_STATUS.map((data) => (
 				<Menu.Item key={data.id}>{data.key}</Menu.Item>
 			))}
 		</Menu>

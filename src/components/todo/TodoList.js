@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../services';
-import { DeleteTodo, TodoBox } from '../todo';
-import _ from 'lodash';
+import { DeleteTodo, TodoBox, TodoLabel } from '../todo';
+import { mapValues, groupBy } from 'lodash';
 
 export default function TodoList() {
 	const [todos, setTodos] = useState([]);
@@ -21,7 +21,7 @@ export default function TodoList() {
 				console.log('response', response);
 				setTodos(response.data);
 
-				let grouped = _.mapValues(_.groupBy(response.data, 'status'));
+				let grouped = mapValues(groupBy(response.data, 'status'));
 
 				console.log('grouped', grouped);
 				setGrouped(grouped);
@@ -52,6 +52,7 @@ export default function TodoList() {
 				{grouped &&
 					Object.entries(grouped).map(([key, values], i) => (
 						<div key={i} className="kanban__group">
+							<TodoLabel data={values[0]} />
 							{values.map((data) => (
 								<TodoBox key={data._id} data={data} />
 							))}
