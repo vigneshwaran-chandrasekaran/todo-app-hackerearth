@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { message, Col, Row, Select } from 'antd';
-import { Form, Input } from 'formik-antd';
+import { Form, Input, DatePicker } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+
 import { API } from '../../services';
 import { FormActionButtons } from '../FormActionButtons';
 import { TODO_LABEL } from '../../helpers/';
@@ -14,18 +16,19 @@ const { Option } = Select;
 const TodoSchema = Yup.object({
 	title: Yup.string().required('Title required'),
 	description: Yup.string().required('Description required'),
-	// dueDate: Yup.number().required('Duedate code required'),
+	dueDate: Yup.string().required('Duedate required'),
 	label: Yup.number().required('Label code required'),
 });
 
 function TodoForm({ onClose, editMode, editableTodo }) {
 	const dispatch = useDispatch();
+	const [dueDate, setDueDate] = useState();
 
 	const initialValues = {
 		title: editMode ? editableTodo.title : undefined,
 		description: editMode ? editableTodo.description : undefined,
-		dueDate: editMode ? editableTodo.phone : undefined,
-		label: editMode ? editableTodo.label : undefined,
+		dueDate: editMode ? editableTodo.phone : moment(),
+		label: editMode ? editableTodo.label : 3,
 	};
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
@@ -48,7 +51,12 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 		const CREDENTIALS = {
 			url,
 			method: editMode ? 'put' : 'post',
-			data: values,
+			data: {
+				...values,
+				dueDate: moment(values.dueDate, 'DD-MM-YYYY').format(
+					'YYYY-MM-DD'
+				),
+			},
 			setErrors,
 		};
 
@@ -98,6 +106,33 @@ function TodoForm({ onClose, editMode, editableTodo }) {
 								<Input
 									name="description"
 									placeholder="Description"
+								/>
+							</Form.Item>
+						</Col>
+					</Row>
+					<Row>
+						<Col span={24}>
+							{/* <label className="ant-form-item-label">
+								Duedate
+							</label> */}
+							<Form.Item
+								name="dueDate"
+								label="Duedate"
+								hasFeedback={true}
+								showValidateSuccess={true}
+							>
+								<DatePicker
+									value={dueDate}
+									name="dueDate"
+									onChange={(date, dateString) => {
+										setDueDate(date);
+										setFieldValue('dueDate', dateString);
+									}}
+									format="DD-MM-YYYY"
+									disabledDate={(current) => {
+										return current && current < moment();
+									}}
+									style={{ width: '100%' }}
 								/>
 							</Form.Item>
 						</Col>
