@@ -1,9 +1,9 @@
 export const USER_INFO_LOCAL_STORAGE_KEY = 'toDoUserInfo';
 
 export const TODO_STATUS = [
-	{ id: 1, key: 'New' },
-	{ id: 2, key: 'Inprogress' },
-	{ id: 3, key: 'Completed' },
+	{ id: 1, key: 'New', className: 'todo-new' },
+	{ id: 2, key: 'Inprogress', className: 'todo-inprogress' },
+	{ id: 3, key: 'Completed', className: 'todo-completed' },
 	// { id: 4, key: 'Deleted' },
 ];
 

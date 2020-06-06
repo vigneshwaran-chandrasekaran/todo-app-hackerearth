@@ -36,7 +36,10 @@ export default function TodoList() {
 	return (
 		<div className="kanban">
 			{TODO_STATUS.map((data) => (
-				<div key={data.id} className="kanban__group">
+				<div
+					key={data.id}
+					className={`kanban__group  ${data.className}`}
+				>
 					<TodoStatus data={data} />
 					{grouped[data.id] &&
 						grouped[data.id].map((todo) => (

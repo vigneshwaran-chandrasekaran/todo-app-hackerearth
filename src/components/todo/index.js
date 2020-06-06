@@ -2,6 +2,7 @@ export { default as TodoActionControls } from './TodoActionControls';
 export { default as TodoBox } from './TodoBox';
 export { default as TodoDate } from './TodoDate';
 export { default as TodoDelete } from './TodoDelete';
+export { default as TodoEdit } from './TodoEdit';
 export { default as TodoLabel } from './TodoLabel';
 export { default as TodoList } from './TodoList';
 export { default as TodoStatus } from './TodoStatus';
