@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Tag, Divider } from 'antd';
+import { Tag } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import moment from 'moment';
 

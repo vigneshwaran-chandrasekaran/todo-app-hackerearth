@@ -20,9 +20,11 @@ export default function TodoStatusChange({ data }) {
 
 	const menu = (
 		<Menu onClick={handleStatusEdit}>
-			{TODO_STATUS.map((data) => (
-				<Menu.Item key={data.id}>{data.key}</Menu.Item>
-			))}
+			{TODO_STATUS.filter((todo) => todo.id !== data.status).map(
+				(todo) => (
+					<Menu.Item key={todo.id}>{todo.key}</Menu.Item>
+				)
+			)}
 		</Menu>
 	);
 
