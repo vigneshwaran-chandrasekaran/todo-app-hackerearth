@@ -21,7 +21,7 @@ export default function TodoList() {
 				console.log('response', response);
 				setTodos(response.data);
 
-				let grouped = _.mapValues(_.groupBy(response.data, 'label'));
+				let grouped = _.mapValues(_.groupBy(response.data, 'status'));
 
 				console.log('grouped', grouped);
 				setGrouped(grouped);
