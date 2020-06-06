@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../../services';
-import { DeleteTodo, TodoBox, TodoLabel } from '../todo';
+import { DeleteTodo, TodoBox, TodoStatus } from '../todo';
 import { mapValues, groupBy } from 'lodash';
 
 export default function TodoList() {
@@ -52,7 +52,7 @@ export default function TodoList() {
 				{grouped &&
 					Object.entries(grouped).map(([key, values], i) => (
 						<div key={i} className="kanban__group">
-							<TodoLabel data={values[0]} />
+							<TodoStatus data={values[0]} />
 							{values.map((data) => (
 								<TodoBox key={data._id} data={data} />
 							))}

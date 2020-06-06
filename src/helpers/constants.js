@@ -8,8 +8,8 @@ export const TODO_STATUS = [
 ];
 
 export const TODO_LABEL = [
-	{ id: 1, key: 'PERSONAL' },
-	{ id: 2, key: 'WORK' },
-	{ id: 3, key: 'SHOPPING' },
-	{ id: 4, key: 'OTHER' },
+	{ id: 1, key: 'PERSONAL', color: 'magenta' },
+	{ id: 2, key: 'WORK', color: 'gold' },
+	{ id: 3, key: 'SHOPPING', color: 'green' },
+	{ id: 4, key: 'OTHER', color: 'blue' },
 ];

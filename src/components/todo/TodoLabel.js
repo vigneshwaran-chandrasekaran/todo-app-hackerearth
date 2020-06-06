@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { TODO_STATUS } from '../../helpers/constants';
+import { Tag } from 'antd';
+import { TODO_LABEL } from '../../helpers/constants';
 
 export default function TodoLabel({ data }) {
-	const [label, setLabel] = useState('');
+	const [state, setState] = useState({
+		color: '',
+		key: '',
+	});
 
 	useEffect(() => {
 		if (data) {
-			let obj = TODO_STATUS.find((status) => status.id === data.status);
+			let obj = TODO_LABEL.find((status) => status.id === data.label);
 			if (obj) {
-				setLabel(obj.key);
+				setState(obj);
 			}
 		}
 	}, [data]);
-
-	return <div className="title-label">{label}</div>;
+	return <Tag color={state.color}>{state.key}</Tag>;
 }

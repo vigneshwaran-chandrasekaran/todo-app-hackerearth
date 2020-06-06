@@ -4,4 +4,5 @@ export { default as TodoBox } from './TodoBox';
 export { default as TodoDelete } from './TodoDelete';
 export { default as TodoLabel } from './TodoLabel';
 export { default as TodoList } from './TodoList';
+export { default as TodoStatus } from './TodoStatus';
 export { default as TodoStatusChange } from './TodoStatusChange';
