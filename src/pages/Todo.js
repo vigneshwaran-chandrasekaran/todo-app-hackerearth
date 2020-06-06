@@ -6,13 +6,13 @@ import { TodoList } from '../components/todo';
 export default function Todo() {
 	return (
 		<div className="main-layout">
-			<Row gutter={8}>
+			<Row gutter={8} justify={'end'}>
 				<Col>
 					<ModalForm />
 				</Col>
-				<Col>
+				{/* <Col>
 					<DrawerForm />
-				</Col>
+				</Col> */}
 			</Row>
 			<TodoList />
 		</div>

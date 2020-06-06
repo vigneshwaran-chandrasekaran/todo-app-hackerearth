@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import { API } from '../../services';
-import { DeleteTodo, TodoBox, TodoStatus } from '../todo';
+import { TodoBox, TodoStatus } from '../todo';
 import { mapValues, groupBy } from 'lodash';
 import { TODO_STATUS } from '../../helpers/constants';
 

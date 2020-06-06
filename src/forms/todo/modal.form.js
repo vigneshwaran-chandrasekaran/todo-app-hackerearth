@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button } from 'antd';
 import { TodoForm } from '../todo';
 
@@ -12,14 +12,12 @@ export default class App extends React.Component {
 	};
 
 	handleOk = (e) => {
-		console.log(e);
 		this.setState({
 			visible: false,
 		});
 	};
 
 	handleCancel = (e) => {
-		console.log(e);
 		this.setState({
 			visible: false,
 		});
@@ -29,7 +27,7 @@ export default class App extends React.Component {
 		return (
 			<div>
 				<Button type="primary" onClick={this.showModal}>
-					Modal Form
+					Add new todo
 				</Button>
 				<Modal
 					title="Add new todo"

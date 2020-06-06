@@ -26,6 +26,8 @@
 .kanban {
 	display: flex;
 	justify-content: space-between;
+	min-height: 100vh;
+
 	.kanban__group {
 		width: 100%;
 		margin: 5px;
