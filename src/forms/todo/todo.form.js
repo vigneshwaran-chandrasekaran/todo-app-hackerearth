@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { message, Col, Row } from 'antd';
 import { Form, Input, DatePicker, Select } from 'formik-antd';
 import { Formik } from 'formik';
@@ -23,29 +23,38 @@ const TodoSchema = Yup.object({
 
 const TOMORROW = moment().add(1, 'days');
 
-function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
+function TodoForm({ onClose }) {
 	const dispatch = useDispatch();
+	const { editTodoData } = useSelector((state) => state.api);
 	const [dueDate, setDueDate] = useState();
 	const [todoLabel, setTodoLabel] = useState();
-
-	const formInitialValues = {
-		title: editMode ? editableTodoData.title : undefined,
-		description: editMode ? editableTodoData.description : undefined,
-		dueDate: editMode ? moment(editableTodoData.dueDate) : TOMORROW,
-		label: editMode ? editableTodoData.label : 1,
-	};
+	const [editMode, setEditMode] = useState(false);
+	const [formInitialValues, setFormInitialValues] = useState({});
 
 	useEffect(() => {
-		if (!isEmpty(editableTodoData)) {
-			setDueDate(moment(editableTodoData.dueDate));
+		if (!isEmpty(editTodoData)) {
+			setEditMode(true);
+			setDueDate(moment(editTodoData.dueDate));
+		} else {
+			setEditMode(false);
 		}
-	}, [editableTodoData]);
+	}, [editTodoData]);
+
+	useEffect(() => {
+		const formInitialValues = {
+			title: editMode ? editTodoData.title : undefined,
+			description: editMode ? editTodoData.description : undefined,
+			dueDate: editMode ? moment(editTodoData.dueDate) : TOMORROW,
+			label: editMode ? editTodoData.label : 1,
+		};
+		setFormInitialValues(formInitialValues);
+	}, [editMode]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		let url = `todos`;
 
 		if (editMode) {
-			url = `${url}/${editableTodoData._id}`;
+			url = `${url}/${editTodoData._id}`;
 		}
 
 		const CREDENTIALS = {
@@ -183,8 +192,6 @@ function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
 
 TodoForm.propTypes = {
 	onClose: PropTypes.func.isRequired,
-	// editMode: PropTypes.bool.isRequired,
-	// editableTodoData: PropTypes.object.isRequired,
 };
 
 export { TodoForm };

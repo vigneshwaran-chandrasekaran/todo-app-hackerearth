@@ -34,7 +34,7 @@ export default function DrawerForm() {
 				Add new todo
 			</Button>
 			<Drawer
-				title="Add new todo"
+				title="Todo"
 				width={500}
 				placement="right"
 				closable={false}
