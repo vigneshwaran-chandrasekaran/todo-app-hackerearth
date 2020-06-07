@@ -10,11 +10,11 @@ export default function Todo() {
 
 	return (
 		<div className="main-layout">
-			<Row gutter={8} justify={'center'}>
+			{/* <Row gutter={8} justify={'center'}>
 				<Col span={8}>
 					<TodoForm onClose={onClose} />
 				</Col>
-			</Row>
+			</Row> */}
 
 			<Row gutter={8} justify={'end'}>
 				<Col>

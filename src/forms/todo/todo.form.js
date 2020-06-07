@@ -32,22 +32,30 @@ function TodoForm({ onClose }) {
 	const [formInitialValues, setFormInitialValues] = useState({});
 
 	useEffect(() => {
-		if (!isEmpty(editTodoData)) {
-			setEditMode(true);
-			setDueDate(moment(editTodoData.dueDate));
-		} else {
-			setEditMode(false);
+		try {
+			if (!isEmpty(editTodoData)) {
+				setEditMode(true);
+				setDueDate(moment(editTodoData.dueDate));
+			} else {
+				setEditMode(false);
+			}
+		} catch (error) {
+			console.log('error', error);
 		}
 	}, [editTodoData]);
 
 	useEffect(() => {
-		const formInitialValues = {
-			title: editMode ? editTodoData.title : undefined,
-			description: editMode ? editTodoData.description : undefined,
-			dueDate: editMode ? moment(editTodoData.dueDate) : TOMORROW,
-			label: editMode ? editTodoData.label : 1,
-		};
-		setFormInitialValues(formInitialValues);
+		try {
+			const formInitialValues = {
+				title: editMode ? editTodoData.title : undefined,
+				description: editMode ? editTodoData.description : undefined,
+				dueDate: editMode ? moment(editTodoData.dueDate) : TOMORROW,
+				label: editMode ? editTodoData.label : 1,
+			};
+			setFormInitialValues(formInitialValues);
+		} catch (error) {
+			console.log('error', error);
+		}
 	}, [editMode]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
@@ -88,8 +96,9 @@ function TodoForm({ onClose }) {
 		message.success(`${values.title} ${text} successfully`);
 	}
 
+	// `enableReinitialize` will solve the form not updating issue
+
 	return (
-		// `enableReinitialize` will solve the form not updating issue
 		<Formik
 			enableReinitialize
 			initialValues={formInitialValues}
