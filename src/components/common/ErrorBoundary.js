@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default class ErrorBoundary extends Component {
 	constructor(props) {
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends Component {
 					<h1 className="center p-20 warn gr-bc">
 						Sorry something went wrong.
 					</h1>
-					<Link to="/logout">Logout</Link>
+					{/* <Link to="/logout">Logout</Link> */}
 				</div>
 			);
 		}
