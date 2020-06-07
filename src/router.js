@@ -1,7 +1,9 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { AuthRoute, PrivateRoute, Loader } from './components/routes';
+import { AuthRoute, PrivateRoute } from './components/routes';
+import { Loader } from './components/common';
+
 import * as Pages from './pages';
 
 const { Content } = Layout;
