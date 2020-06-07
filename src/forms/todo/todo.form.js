@@ -77,7 +77,7 @@ function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
 
 	function showSuccessMessage(values) {
 		let text = editMode ? 'updated' : 'added';
-		message.success(`${values.title} todo ${text} successfully`);
+		message.success(`${values.title} ${text} successfully`);
 	}
 
 	return (
