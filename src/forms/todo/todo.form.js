@@ -200,7 +200,7 @@ function TodoForm({ onClose }) {
 }
 
 TodoForm.propTypes = {
-	// onClose: PropTypes.func.isRequired,
+	onClose: PropTypes.func.isRequired,
 };
 
 export { TodoForm };
