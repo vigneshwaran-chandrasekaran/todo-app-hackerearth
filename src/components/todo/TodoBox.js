@@ -1,5 +1,4 @@
 import React from 'react';
-import { Tag, Divider } from 'antd';
 import { TodoDate, TodoActionControls, TodoLabel } from '../todo';
 
 export default function TodoBox(props) {

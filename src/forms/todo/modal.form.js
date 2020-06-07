@@ -17,8 +17,12 @@ export default function ModalForm() {
 	}, [editTodoData]);
 
 	const showForm = () => {
-		dispatch(editTodo());
-		setVisible(true);
+		try {
+			dispatch(editTodo());
+			setVisible(true);
+		} catch (error) {
+			console.log('error', error);
+		}
 	};
 
 	const onClose = () => {
