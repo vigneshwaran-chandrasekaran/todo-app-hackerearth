@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class ErrorBoundary extends Component {
 	constructor(props) {
@@ -20,7 +21,14 @@ export default class ErrorBoundary extends Component {
 	render() {
 		if (this.state.hasError) {
 			// You can render any custom fallback UI
-			return <h1>Something went wrong.</h1>;
+			return (
+				<div className="center">
+					<h1 className="center p-20 warn gr-bc">
+						Sorry something went wrong.
+					</h1>
+					<Link to="/logout">Logout</Link>
+				</div>
+			);
 		}
 
 		return this.props.children;

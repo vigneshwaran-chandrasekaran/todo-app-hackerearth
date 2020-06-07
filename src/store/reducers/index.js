@@ -16,7 +16,6 @@ const rootReducer = (state, action) => {
 			api: {
 				showLoader: false,
 				status: null,
-				notification: state.api.notification,
 			},
 			history: {
 				recent: '/login',

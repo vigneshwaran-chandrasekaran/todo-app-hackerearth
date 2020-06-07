@@ -1,7 +1,6 @@
 const initialState = {
 	showLoader: false,
 	status: null,
-	notification: null,
 	todoListUpdated: '',
 	editTodoData: {},
 };
@@ -18,8 +17,6 @@ export function api(state = initialState, action) {
 			return { ...state, showLoader: true };
 		case 'HIDE_LOADER':
 			return { ...state, showLoader: false };
-		case 'NOTIFICATION_REF':
-			return { ...state, notification: action.reference };
 		case 'UPDATE_TODO_LIST':
 			return { ...state, todoListUpdated: action.payload };
 		case 'EDIT_TODO':

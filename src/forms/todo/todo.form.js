@@ -182,9 +182,9 @@ function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
 }
 
 TodoForm.propTypes = {
-	editMode: PropTypes.bool.isRequired,
 	onClose: PropTypes.func.isRequired,
-	editableTodoData: PropTypes.object.isRequired,
+	// editMode: PropTypes.bool.isRequired,
+	// editableTodoData: PropTypes.object.isRequired,
 };
 
 export { TodoForm };
