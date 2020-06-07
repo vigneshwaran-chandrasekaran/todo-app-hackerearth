@@ -35,10 +35,10 @@ export default function TodoList() {
 		API.common(CREDENTIALS)
 			.then((response) => {
 				console.log('response', response);
-				let grouped = mapValues(groupBy(response.data, 'status'));
-				console.log('grouped', grouped);
+				// let grouped = mapValues(groupBy(response.data, 'status'));
+				// console.log('grouped', grouped);
 				setTodos(response.data);
-				setGrouped(grouped);
+				// setGrouped(grouped);
 			})
 			.finally(() => {});
 	}, [todoListUpdated]);
@@ -52,7 +52,11 @@ export default function TodoList() {
 
 		let filtered = todos.filter((todo) => labels.includes(todo.label));
 		console.log('filtered', filtered);
-	}, [state]);
+
+		let grouped = mapValues(groupBy(filtered, 'status'));
+		console.log('grouped', grouped);
+		setGrouped(grouped);
+	}, [todos, state]);
 
 	const onChange = (checkedList) => {
 		console.log('checkedList', checkedList);
@@ -83,7 +87,7 @@ export default function TodoList() {
 				onChange={onCheckAllChange}
 				checked={state.checkAll}
 			>
-				Check all
+				Select all labels
 			</Checkbox>
 			<CheckboxGroup
 				options={plainOptions}
