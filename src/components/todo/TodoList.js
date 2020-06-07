@@ -32,35 +32,32 @@ export default function TodoList() {
 			method: 'get',
 		};
 
-		API.common(CREDENTIALS)
-			.then((response) => {
-				console.log('response', response);
-				// let grouped = mapValues(groupBy(response.data, 'status'));
-				// console.log('grouped', grouped);
-				setTodos(response.data);
-				// setGrouped(grouped);
-			})
-			.finally(() => {});
+		API.common(CREDENTIALS).then((response) => {
+			setTodos(response.data);
+		});
 	}, [todoListUpdated]);
 
 	useEffect(() => {
-		console.log('state', state);
+		/**
+		 * find label id from selected label checkboxes
+		 */
 		const labels = TODO_LABEL.filter((label) =>
 			state.checkedList.includes(label.key)
 		).map((todo) => todo.id);
-		console.log('labels', labels);
 
+		/**
+		 * filter out todo based on selected labels
+		 */
 		let filtered = todos.filter((todo) => labels.includes(todo.label));
-		console.log('filtered', filtered);
 
+		/**
+		 * Group the todos based on status (New, inprogress, completed)
+		 */
 		let grouped = mapValues(groupBy(filtered, 'status'));
-		console.log('grouped', grouped);
 		setGrouped(grouped);
 	}, [todos, state]);
 
 	const onChange = (checkedList) => {
-		console.log('checkedList', checkedList);
-
 		setState({
 			...state,
 			checkedList,

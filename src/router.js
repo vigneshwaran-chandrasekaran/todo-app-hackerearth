@@ -25,7 +25,12 @@ export default function Router() {
 							<PrivateRoute exact path={'/todo'}>
 								<Pages.Todo />
 							</PrivateRoute>
+
 							{/* authenticated pages ends*/}
+
+							<Route path="/logout">
+								<Pages.Logout />
+							</Route>
 
 							<Route path="*">
 								<Pages.NotFound />
