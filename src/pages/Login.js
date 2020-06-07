@@ -15,9 +15,14 @@ const LoginSchema = Yup.object({
 	password: Yup.string().required('Password required'),
 });
 
+// const initialValues = {
+// 	email: 'todo@gmail.com',
+// 	password: 'password',
+// };
+
 const initialValues = {
-	email: 'todo@gmail.com',
-	password: 'password',
+	email: undefined,
+	password: undefined,
 };
 
 export function Login() {

@@ -20,11 +20,18 @@ const SignupScheme = Yup.object({
 export function Signup() {
 	const history = useHistory();
 
+	// const initialValues = {
+	// 	email: 'todo@gmail.com',
+	// 	password: 'password',
+	// 	firstName: 'Vigneshwaran',
+	// 	lastName: 'C',
+	// };
+
 	const initialValues = {
-		email: 'todo@gmail.com',
-		password: 'password',
-		firstName: 'Vigneshwaran',
-		lastName: 'C',
+		email: undefined,
+		password: undefined,
+		firstName: undefined,
+		lastName: undefined,
 	};
 
 	function handleSignup(values, { setErrors, setSubmitting }) {
