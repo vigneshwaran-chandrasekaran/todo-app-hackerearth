@@ -42,7 +42,6 @@ function TodoForm({ onClose, editMode = false, editableTodoData = {} }) {
 	}, [editableTodoData]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
-		console.log('values visit', values);
 		let url = `todos`;
 
 		if (editMode) {

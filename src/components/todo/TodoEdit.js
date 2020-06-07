@@ -8,7 +8,6 @@ export default function TodoEdit({ data }) {
 	const dispatch = useDispatch();
 
 	function handleEdit() {
-		console.log('handleEdit', data);
 		dispatch(editTodo(data));
 	}
 

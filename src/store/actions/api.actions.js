@@ -52,7 +52,6 @@ export function updatedTodoList() {
 }
 
 export function editTodo(data = {}) {
-	// console.log('editTodo', data);
 	return {
 		type: 'EDIT_TODO',
 		payload: data,
