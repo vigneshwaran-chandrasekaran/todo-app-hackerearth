@@ -2,8 +2,9 @@ const CACHE_NAME = 'version-1';
 const urlsToCache = [
 	'index.html',
 	'offline.html',
-	'https://todo-restapi-app.herokuapp.com/api/todos?all=true',
+	'https://todo-restapi-app.herokuapp.com/api/todos',
 	'/todo',
+	'https://todo-restapi-app.herokuapp.com/api/',
 ];
 
 const self = this;
