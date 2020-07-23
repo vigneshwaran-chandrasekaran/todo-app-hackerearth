@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Row, Col, Card, Typography } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 import { Formik } from 'formik';
 import { Form, Input, SubmitButton } from 'formik-antd';
-import * as Yup from 'yup';
 import jsSha512 from 'js-sha512';
-import { API, SESSION } from '../services';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
 import { useIsMounted } from '../hooks';
+import { API, SESSION } from '../services';
 
 const { Title } = Typography;
 
@@ -15,15 +15,15 @@ const LoginSchema = Yup.object({
 	password: Yup.string().required('Password required'),
 });
 
-// const initialValues = {
-// 	email: 'todo@gmail.com',
-// 	password: 'password',
-// };
-
 const initialValues = {
-	email: undefined,
-	password: undefined,
+	email: 'todo@gmail.com',
+	password: 'password',
 };
+
+// const initialValues = {
+// 	email: undefined,
+// 	password: undefined,
+// };
 
 export function Login() {
 	const history = useHistory();
