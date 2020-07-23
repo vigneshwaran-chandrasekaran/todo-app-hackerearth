@@ -34,7 +34,9 @@ export function register(config) {
 		window.addEventListener('load', () => {
 			const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
+			console.log('swUrl', swUrl);
 			if (isLocalhost) {
+				console.log('if part');
 				// This is running on localhost. Let's check if a service worker still exists or not.
 				checkValidServiceWorker(swUrl, config);
 
@@ -48,6 +50,7 @@ export function register(config) {
 				});
 			} else {
 				// Is not localhost. Just register service worker
+				console.log('else part');
 				registerValidSW(swUrl, config);
 			}
 		});
@@ -58,6 +61,7 @@ function registerValidSW(swUrl, config) {
 	navigator.serviceWorker
 		.register(swUrl)
 		.then((registration) => {
+			console.log('react sw working ........ . . . . . .');
 			registration.onupdatefound = () => {
 				console.log('serviceWorker working');
 				const installingWorker = registration.installing;
