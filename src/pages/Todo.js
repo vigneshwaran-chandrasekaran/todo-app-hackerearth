@@ -1,12 +1,13 @@
+import { Col, Row } from 'antd';
 import React from 'react';
-import { Row, Col } from 'antd';
-import { ModalForm, DrawerForm, TodoForm } from '../forms/todo';
+// import { ModalForm, DrawerForm, TodoForm } from '../forms/todo';
 import { TodoList } from '../components/todo';
+import { ModalForm } from '../forms/todo';
 
 export default function Todo() {
-	function onClose() {
-		console.log('onClose');
-	}
+	// function onClose() {
+	// 	console.log('onClose');
+	// }
 
 	return (
 		<div className="main-layout">

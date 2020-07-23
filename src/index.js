@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
 import 'typeface-roboto';
-import './styles/style.scss';
+// import { ErrorBoundary } from './components/common';
 import Router from './router';
-import store from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
-import { ErrorBoundary } from './components/common';
+import store from './store/configureStore';
+import './styles/style.scss';
 
 console.log('build = ', process.env.NODE_ENV);
 
 ReactDOM.render(
-	<ErrorBoundary>
-		<Provider store={store}>
-			<Router />
-		</Provider>
-	</ErrorBoundary>,
+	// <ErrorBoundary></ErrorBoundary>
+	<Provider store={store}>
+		<Router />
+	</Provider>,
 	document.getElementById('root')
 );
 

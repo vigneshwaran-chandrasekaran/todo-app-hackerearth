@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { message, Col, Row } from 'antd';
-import { Form, Input, DatePicker, Select } from 'formik-antd';
+import { Col, message, Row } from 'antd';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-import PropTypes from 'prop-types';
-import moment from 'moment';
+import { DatePicker, Form, Input, Select } from 'formik-antd';
 import { isEmpty } from 'lodash';
-import { API } from '../../services';
-import { FormActionButtons } from '../FormActionButtons';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 import { TODO_LABEL } from '../../helpers/constants';
+import { API } from '../../services';
 import { updatedTodoList } from '../../store/actions/api.actions';
+import { FormActionButtons } from '../FormActionButtons';
 
 const { Option } = Select;
 
@@ -46,17 +46,17 @@ function TodoForm({ onClose }) {
 
 	useEffect(() => {
 		try {
-			const formInitialValues = {
+			const formData = {
 				title: editMode ? editTodoData.title : undefined,
 				description: editMode ? editTodoData.description : undefined,
 				dueDate: editMode ? moment(editTodoData.dueDate) : TOMORROW,
 				label: editMode ? editTodoData.label : 1,
 			};
-			setFormInitialValues(formInitialValues);
+			setFormInitialValues(formData);
 		} catch (error) {
 			console.log('error', error);
 		}
-	}, [editMode]);
+	}, [editMode, editTodoData]);
 
 	function handleSubmit(values, { setErrors, resetForm, setSubmitting }) {
 		let url = `todos`;

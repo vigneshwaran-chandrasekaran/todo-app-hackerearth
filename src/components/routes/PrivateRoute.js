@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { SESSION } from '../../services';
-import { Sidebar } from '../sidebar';
+// import { Sidebar } from '../sidebar';
 import { HeadNavbar } from '../common';
 
 const { Content } = Layout;
