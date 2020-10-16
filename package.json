@@ -38,6 +38,7 @@
     "start:production": "cross-env PORT=3505 env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "justTest": "test",
     "eject": "react-scripts eject",
     "build:production": "env-cmd -f .env.production react-scripts build"
   },
@@ -58,6 +59,7 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "jest": "^26.5.3",
     "react-test-renderer": "^16.14.0"
   }
 }
