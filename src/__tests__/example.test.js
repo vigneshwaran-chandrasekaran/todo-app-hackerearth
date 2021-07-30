@@ -2,6 +2,12 @@ import { add, dateChange } from '../helpers/example';
 
 const DATE = '2019/06/01';
 
+describe('testing math add function', () => {
+
+beforeAll(() => {
+        console.log('Math test started');
+    })
+
 test('Adding 1 + 23 equals 24', () => {
 	expect(add(1, 23)).toBe(24);
 });
@@ -22,6 +28,8 @@ test('Adding -1 + 6 equals 5', () => {
 	expect(add(-1, 6)).toBe(5);
 });
 
+});
+
 test('Date modification', () => {
-	expect(dateChange(DATE).toEqual('June 1, 2019'));
+	expect(dateChange(DATE)).toContain('June 1, 2019');
 });
