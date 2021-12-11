@@ -52,8 +52,8 @@ export function Login() {
 		});
 	}
 
-	function handleLoginSuccess(response) {
-		const { data } = response;
+	function handleLoginSuccess(response = {}) {
+		const { data = {} } = response;
 		SESSION.setToken(data);
 	}
 

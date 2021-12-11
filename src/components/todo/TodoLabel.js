@@ -22,6 +22,6 @@ export default function TodoLabel({ data }) {
 
 TodoLabel.propTypes = {
 	data: PropTypes.shape({
-		label: PropTypes.string,
+		label: PropTypes.number,
 	}),
 };

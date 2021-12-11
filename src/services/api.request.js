@@ -33,7 +33,7 @@ class ApiRequestClass {
 		try {
 			const URL = this.addQueryParamsWithUrl(url, queryParams);
 			const response = await axios[method](URL, data);
-			return Promise.resolve(response.data);
+			return Promise.resolve(response?.data);
 		} catch (error) {
 			this.handleErrors(error, setErrors);
 			return Promise.reject(error);
@@ -124,9 +124,9 @@ class ApiRequestClass {
 	}
 
 	handle422Error(error, setErrors) {
-		const serverErrors = error.response.data.errors.message
-			? error.response.data.errors.message
-			: error.response.data.errors.messages;
+		const serverErrors = error.response?.data?.errors?.message
+			? error.response?.data?.errors?.message
+			: error.response?.data?.errors?.messages;
 		console.log('422 Error', serverErrors);
 		if (serverErrors?.length > 0) {
 			const [serverErrorsObj] = serverErrors;
@@ -137,7 +137,7 @@ class ApiRequestClass {
 			});
 			setErrors(errorKeys);
 		} else {
-			toaster.error(error.response.data.errors.messages[0]);
+			toaster.error(error.response?.data?.errors?.messages[0]);
 		}
 		return null;
 	}

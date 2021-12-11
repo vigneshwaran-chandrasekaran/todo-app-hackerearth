@@ -38,6 +38,6 @@ export default function TodoStatusChange({ data }) {
 TodoStatusChange.propTypes = {
 	data: PropTypes.shape({
 		_id: PropTypes.string,
-		status: PropTypes.string,
+		status: PropTypes.number,
 	}),
 };
