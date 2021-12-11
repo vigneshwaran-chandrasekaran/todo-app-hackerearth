@@ -2,16 +2,16 @@ import { session } from '../services/session';
 import { apiActions as api } from './api.actions';
 
 export function login(credentials) {
-	return dispatch => {
+	return (dispatch) => {
 		dispatch(api.request());
 
 		session
 			.authenticate(credentials)
-			.then(user => {
+			.then((user) => {
 				dispatch({ type: 'LOGIN', authentication: user });
 				dispatch(api.success(user));
 			})
-			.catch(e => {
+			.catch((e) => {
 				dispatch(api.failure(e.toString()));
 			});
 	};

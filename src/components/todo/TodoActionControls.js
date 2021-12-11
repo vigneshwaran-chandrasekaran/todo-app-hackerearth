@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoStatusChange, TodoDelete, TodoEdit } from '../todo';
+import { TodoStatusChange, TodoDelete, TodoEdit } from '.';
 
 export default function TodoActionControls(props) {
 	return (

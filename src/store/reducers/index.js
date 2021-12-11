@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import { api } from './api.reducer';
 import { history } from './history.reducer';
 

@@ -70,9 +70,7 @@ function TodoForm({ onClose }) {
 			method: editMode ? 'put' : 'post',
 			data: {
 				...values,
-				dueDate: moment(values.dueDate, 'DD-MM-YYYY').format(
-					'YYYY-MM-DD'
-				),
+				dueDate: moment(values.dueDate, 'DD-MM-YYYY').format('YYYY-MM-DD'),
 			},
 			setErrors,
 		};
@@ -92,7 +90,7 @@ function TodoForm({ onClose }) {
 	}
 
 	function showSuccessMessage(values) {
-		let text = editMode ? 'updated' : 'added';
+		const text = editMode ? 'updated' : 'added';
 		message.success(`${values.title} ${text} successfully`);
 	}
 
@@ -109,12 +107,7 @@ function TodoForm({ onClose }) {
 				<Form layout="vertical" hideRequiredMark>
 					<Row gutter={8}>
 						<Col span={24}>
-							<Form.Item
-								name="title"
-								label="Title"
-								hasFeedback={true}
-								showValidateSuccess={true}
-							>
+							<Form.Item name="title" label="Title" hasFeedback showValidateSuccess>
 								<Input name="title" placeholder="Title" />
 							</Form.Item>
 						</Col>
@@ -124,13 +117,10 @@ function TodoForm({ onClose }) {
 							<Form.Item
 								name="description"
 								label="Description"
-								hasFeedback={true}
-								showValidateSuccess={true}
+								hasFeedback
+								showValidateSuccess
 							>
-								<Input
-									name="description"
-									placeholder="Description"
-								/>
+								<Input name="description" placeholder="Description" />
 							</Form.Item>
 						</Col>
 					</Row>
@@ -139,8 +129,8 @@ function TodoForm({ onClose }) {
 							<Form.Item
 								name="dueDate"
 								label="Duedate"
-								hasFeedback={true}
-								showValidateSuccess={true}
+								hasFeedback
+								showValidateSuccess
 							>
 								<DatePicker
 									value={dueDate}
@@ -150,9 +140,7 @@ function TodoForm({ onClose }) {
 										setFieldValue('dueDate', dateString);
 									}}
 									format="DD-MM-YYYY"
-									disabledDate={(current) => {
-										return current && current < moment();
-									}}
+									disabledDate={(current) => current && current < moment()}
 									style={{ width: '100%' }}
 								/>
 							</Form.Item>
@@ -160,18 +148,13 @@ function TodoForm({ onClose }) {
 					</Row>
 					<Row gutter={8}>
 						<Col span={24}>
-							<Form.Item
-								name="label"
-								label="Label"
-								hasFeedback={true}
-								showValidateSuccess={true}
-							>
+							<Form.Item name="label" label="Label" hasFeedback showValidateSuccess>
 								<Select
 									showSearch
 									name="label"
 									style={{ width: '100%' }}
-									placeholder={'Select label'}
-									allowClear={true}
+									placeholder="Select label"
+									allowClear
 									optionFilterProp="children"
 									onChange={(data) => {
 										console.log('setTodoLabel', data);
@@ -189,10 +172,7 @@ function TodoForm({ onClose }) {
 						</Col>
 					</Row>
 
-					<FormActionButtons
-						onClose={onClose}
-						isSubmitting={isSubmitting}
-					/>
+					<FormActionButtons onClose={onClose} isSubmitting={isSubmitting} />
 				</Form>
 			)}
 		</Formik>

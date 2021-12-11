@@ -5,7 +5,7 @@ import { Result, Button } from 'antd';
 
 export function NotFound() {
 	const history = useHistory();
-	const { recentlyVisitedUrl } = useSelector(state => state.history);
+	const { recentlyVisitedUrl } = useSelector((state) => state.history);
 
 	function handleGoBack() {
 		history.push(recentlyVisitedUrl);

@@ -11,9 +11,8 @@ function AuthRoute({ children, ...rest }) {
 				}}
 			/>
 		);
-	} else {
-		return <Route {...rest}>{children}</Route>;
 	}
+	return <Route {...rest}>{children}</Route>;
 }
 
 export default AuthRoute;

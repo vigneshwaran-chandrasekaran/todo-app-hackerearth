@@ -1,7 +1,6 @@
 import qs from 'qs';
 import { message as toaster } from 'antd';
 import { isArray } from 'lodash';
-
 import axios from './api.config';
 import { apiActions } from '../store/actions';
 import store from '../store/configureStore';
@@ -32,7 +31,7 @@ class ApiRequestClass {
 		}
 
 		try {
-			let URL = this.addQueryParamsWithUrl(url, queryParams);
+			const URL = this.addQueryParamsWithUrl(url, queryParams);
 			const response = await axios[method](URL, data);
 			return Promise.resolve(response.data);
 		} catch (error) {
@@ -46,8 +45,7 @@ class ApiRequestClass {
 	addQueryParamsWithUrl(url, queryParams) {
 		Object.keys(queryParams).forEach(
 			(key) =>
-				(queryParams[key] === null || queryParams[key] === '') &&
-				delete queryParams[key]
+				(queryParams[key] === null || queryParams[key] === '') && delete queryParams[key]
 		);
 		return url + qs.stringify(queryParams, { addQueryPrefix: true });
 	}
@@ -55,9 +53,9 @@ class ApiRequestClass {
 	handleErrors(error, setErrors) {
 		if (error) {
 			try {
-				const data = error.response.data;
-				const status = error.response.status;
-				let checkNetworkError = JSON.stringify(error);
+				const { data } = error.response;
+				const { status } = error.response;
+				const checkNetworkError = JSON.stringify(error);
 				const NetworkError = 'Network Error';
 
 				if (checkNetworkError.includes(NetworkError)) {
@@ -131,8 +129,8 @@ class ApiRequestClass {
 		console.log('422 Error', serverErrors);
 		if (serverErrors && serverErrors.length > 0) {
 			serverErrors = serverErrors[0];
-			let errorKeys = {};
-			for (let key of Object.keys(serverErrors)) {
+			const errorKeys = {};
+			for (const key of Object.keys(serverErrors)) {
 				errorKeys[key] = serverErrors[key][0];
 			}
 			setErrors(errorKeys);

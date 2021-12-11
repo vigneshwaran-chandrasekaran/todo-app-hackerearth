@@ -27,7 +27,7 @@ function success() {
 function failure(error, key) {
 	return {
 		type: 'FAILURE',
-		error: error,
+		error,
 		errorKey: key,
 	};
 }

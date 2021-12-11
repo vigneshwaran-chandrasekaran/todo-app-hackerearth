@@ -12,8 +12,8 @@ function PrivateRoute({ children, location, ...rest }) {
 	const dispatch = useDispatch();
 	const { pathname } = location;
 
-	useEffect(() => {
-		return () => {
+	useEffect(
+		() => () => {
 			/**
 			 * to set last visited page url in redux store
 			 */
@@ -21,9 +21,10 @@ function PrivateRoute({ children, location, ...rest }) {
 				type: 'SET_HISTORY_RECENT',
 				payload: pathname,
 			});
-		};
+		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]);
+		[pathname]
+	);
 
 	if (SESSION.isLoggedIn()) {
 		return (
@@ -37,9 +38,8 @@ function PrivateRoute({ children, location, ...rest }) {
 				</Content>
 			</Layout>
 		);
-	} else {
-		SESSION.logout();
 	}
+	SESSION.logout();
 }
 
 export default PrivateRoute;

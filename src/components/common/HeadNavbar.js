@@ -17,11 +17,7 @@ export default function HeadNavbar() {
 		<Row justify="end" align="center">
 			<Col span={24}>
 				<Menu onClick={handleClick} mode="horizontal">
-					<SubMenu
-						icon={<UserOutlined />}
-						title="Profile"
-						style={{ float: 'right' }}
-					>
+					<SubMenu icon={<UserOutlined />} title="Profile" style={{ float: 'right' }}>
 						<Menu.Item icon={<LogoutOutlined />} key="logout">
 							Logout
 						</Menu.Item>

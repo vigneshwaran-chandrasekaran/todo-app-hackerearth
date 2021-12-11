@@ -11,7 +11,7 @@ function Sidebar(props) {
 	const [key, setKey] = useState();
 
 	useEffect(() => {
-		let path = props.location.pathname;
+		const path = props.location.pathname;
 		const pathId = findUrlPathId(path);
 		setKey(pathId);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -24,12 +24,7 @@ function Sidebar(props) {
 	return (
 		<Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
 			<>
-				<Menu
-					theme="dark"
-					mode="inline"
-					defaultSelectedKeys={[key]}
-					selectedKeys={[key]}
-				>
+				<Menu theme="dark" mode="inline" defaultSelectedKeys={[key]} selectedKeys={[key]}>
 					<Menu.Item key="1">
 						<NavLink to="/todo" />
 						<HighlightOutlined />

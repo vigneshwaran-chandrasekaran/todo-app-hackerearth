@@ -30,7 +30,7 @@ export function Login() {
 	const isMounted = useIsMounted();
 
 	function LoginForm(values, { setErrors, setSubmitting, resetForm }) {
-		let newVal = {
+		const newVal = {
 			email: values.email,
 			password: jsSha512(values.password),
 		};
@@ -53,7 +53,7 @@ export function Login() {
 	}
 
 	function handleLoginSuccess(response) {
-		const data = response.data;
+		const { data } = response;
 		SESSION.setToken(data);
 	}
 
@@ -80,25 +80,14 @@ export function Login() {
 							<Form>
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="email"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
-											<Input
-												name="email"
-												placeholder="Enter Email ID"
-											/>
+										<Form.Item name="email" hasFeedback showValidateSuccess>
+											<Input name="email" placeholder="Enter Email ID" />
 										</Form.Item>
 									</Col>
 								</Row>
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="password"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
+										<Form.Item name="password" hasFeedback showValidateSuccess>
 											<Input.Password
 												name="password"
 												placeholder="Type Your Password"
@@ -119,14 +108,8 @@ export function Login() {
 									</Col>
 								</Row>
 								<Row gutter={8}>
-									<Col
-										span={24}
-										className="right-align mt-20"
-									>
-										<Link
-											className="forgot-link"
-											to="/signup"
-										>
+									<Col span={24} className="right-align mt-20">
+										<Link className="forgot-link" to="/signup">
 											Signup
 										</Link>
 									</Col>

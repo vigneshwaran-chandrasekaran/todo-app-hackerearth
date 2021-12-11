@@ -11,4 +11,4 @@ export default function useIsMounted() {
 	return isMounted;
 }
 
-//https://dev.to/alexandrudanpop/correctly-handling-async-await-in-react-components-part-2-4fl7
+// https://dev.to/alexandrudanpop/correctly-handling-async-await-in-react-components-part-2-4fl7

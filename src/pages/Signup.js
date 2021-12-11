@@ -5,7 +5,6 @@ import { Form, Input, SubmitButton } from 'formik-antd';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import jsSha512 from 'js-sha512';
-
 import { API } from '../services/api.request';
 
 const { Title } = Typography;
@@ -83,26 +82,15 @@ export function Signup() {
 							<Form>
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="email"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
-											<Input
-												name="email"
-												placeholder=" Enter Email ID"
-											/>
+										<Form.Item name="email" hasFeedback showValidateSuccess>
+											<Input name="email" placeholder=" Enter Email ID" />
 										</Form.Item>
 									</Col>
 								</Row>
 
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="password"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
+										<Form.Item name="password" hasFeedback showValidateSuccess>
 											<Input.Password
 												name="password"
 												placeholder="Type Your Password"
@@ -113,30 +101,16 @@ export function Signup() {
 
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="firstName"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
-											<Input
-												name="firstName"
-												placeholder="Firstname"
-											/>
+										<Form.Item name="firstName" hasFeedback showValidateSuccess>
+											<Input name="firstName" placeholder="Firstname" />
 										</Form.Item>
 									</Col>
 								</Row>
 
 								<Row gutter={8}>
 									<Col span={24}>
-										<Form.Item
-											name="lastName"
-											hasFeedback={true}
-											showValidateSuccess={true}
-										>
-											<Input
-												name="lastName"
-												placeholder="Lastname"
-											/>
+										<Form.Item name="lastName" hasFeedback showValidateSuccess>
+											<Input name="lastName" placeholder="Lastname" />
 										</Form.Item>
 									</Col>
 								</Row>
@@ -155,10 +129,7 @@ export function Signup() {
 								</Row>
 
 								<Row gutter={8}>
-									<Col
-										span={24}
-										className="right-align mt-20"
-									>
+									<Col span={24} className="right-align mt-20">
 										<Link className="forgot-link" to="/">
 											Back to login
 										</Link>

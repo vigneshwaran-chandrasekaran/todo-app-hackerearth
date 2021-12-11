@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Checkbox } from 'antd';
-import { API } from '../../services';
-import { TodoBox, TodoStatus } from '../todo';
 import { mapValues, groupBy } from 'lodash';
+import { API } from '../../services';
+import { TodoBox, TodoStatus } from '.';
 import { TODO_STATUS, TODO_LABEL } from '../../helpers/constants';
 
 const CheckboxGroup = Checkbox.Group;
@@ -41,19 +41,19 @@ export default function TodoList() {
 		/**
 		 * find label id from selected label checkboxes
 		 */
-		const labels = TODO_LABEL.filter((label) =>
-			state.checkedList.includes(label.key)
-		).map((todo) => todo.id);
+		const labels = TODO_LABEL.filter((label) => state.checkedList.includes(label.key)).map(
+			(todo) => todo.id
+		);
 
 		/**
 		 * filter out todo based on selected labels
 		 */
-		let filtered = todos.filter((todo) => labels.includes(todo.label));
+		const filtered = todos.filter((todo) => labels.includes(todo.label));
 
 		/**
 		 * Group the todos based on status (New, inprogress, completed)
 		 */
-		let grouped = mapValues(groupBy(filtered, 'status'));
+		const grouped = mapValues(groupBy(filtered, 'status'));
 		setGrouped(grouped);
 	}, [todos, state]);
 
@@ -61,9 +61,7 @@ export default function TodoList() {
 		setState({
 			...state,
 			checkedList,
-			indeterminate:
-				!!checkedList.length &&
-				checkedList.length < plainOptions.length,
+			indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
 			checkAll: checkedList.length === plainOptions.length,
 		});
 	};
@@ -86,23 +84,14 @@ export default function TodoList() {
 			>
 				Select all labels
 			</Checkbox>
-			<CheckboxGroup
-				options={plainOptions}
-				value={state.checkedList}
-				onChange={onChange}
-			/>
+			<CheckboxGroup options={plainOptions} value={state.checkedList} onChange={onChange} />
 
 			<div className="kanban">
 				{TODO_STATUS.map((data) => (
-					<div
-						key={data.id}
-						className={`kanban__group  ${data.className}`}
-					>
+					<div key={data.id} className={`kanban__group  ${data.className}`}>
 						<TodoStatus data={data} />
 						{grouped[data.id] &&
-							grouped[data.id].map((todo) => (
-								<TodoBox key={todo._id} data={todo} />
-							))}
+							grouped[data.id].map((todo) => <TodoBox key={todo._id} data={todo} />)}
 					</div>
 				))}
 			</div>

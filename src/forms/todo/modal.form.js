@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
 import { isEmpty } from 'lodash';
-import { TodoForm } from '../todo';
+import { TodoForm } from '.';
 import { editTodo } from '../../store/actions/api.actions';
 
 export default function ModalForm() {
@@ -35,12 +35,7 @@ export default function ModalForm() {
 			<Button type="primary" onClick={showForm}>
 				Add new todo
 			</Button>
-			<Modal
-				title="Todo"
-				visible={visible}
-				onCancel={onClose}
-				footer={null}
-			>
+			<Modal title="Todo" visible={visible} onCancel={onClose} footer={null}>
 				<TodoForm onClose={onClose} />
 			</Modal>
 		</div>

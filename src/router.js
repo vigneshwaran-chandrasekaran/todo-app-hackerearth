@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AuthRoute, PrivateRoute } from './components/routes';
 import { Loader } from './components/common';
-
 import * as Pages from './pages';
 
 const { Content } = Layout;
@@ -23,12 +22,12 @@ export default function Router() {
 								<Pages.Signup />
 							</AuthRoute>
 
-							{/* authenticated pages starts*/}
-							<PrivateRoute exact path={'/todo'}>
+							{/* authenticated pages starts */}
+							<PrivateRoute exact path="/todo">
 								<Pages.Todo />
 							</PrivateRoute>
 
-							{/* authenticated pages ends*/}
+							{/* authenticated pages ends */}
 
 							<Route path="/logout">
 								<Pages.Logout />

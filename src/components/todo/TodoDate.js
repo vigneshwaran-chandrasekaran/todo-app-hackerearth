@@ -7,7 +7,7 @@ export default function TodoDate({ data }) {
 	const [date, setDate] = useState('Date not available');
 	useEffect(() => {
 		if (data.dueDate) {
-			let date = moment(data.dueDate).format('DD MMM YYYY');
+			const date = moment(data.dueDate).format('DD MMM YYYY');
 			setDate(date);
 		}
 	}, [data]);

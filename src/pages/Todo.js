@@ -17,7 +17,7 @@ export default function Todo() {
 				</Col>
 			</Row> */}
 
-			<Row gutter={8} justify={'end'}>
+			<Row gutter={8} justify="end">
 				<Col>
 					<ModalForm />
 				</Col>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoDate, TodoActionControls, TodoLabel } from '../todo';
+import { TodoDate, TodoActionControls, TodoLabel } from '.';
 
 export default function TodoBox(props) {
 	const { data } = props;

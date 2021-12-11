@@ -10,7 +10,7 @@ export default function TodoLabel({ data }) {
 
 	useEffect(() => {
 		if (data) {
-			let obj = TODO_LABEL.find((status) => status.id === data.label);
+			const obj = TODO_LABEL.find((status) => status.id === data.label);
 			if (obj) {
 				setState(obj);
 			}

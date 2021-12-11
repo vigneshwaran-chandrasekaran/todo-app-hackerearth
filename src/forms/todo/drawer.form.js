@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Drawer, Button } from 'antd';
 import { isEmpty } from 'lodash';
-import { TodoForm } from '../todo';
+import { TodoForm } from '.';
 import { editTodo } from '../../store/actions/api.actions';
 
 export default function DrawerForm() {
