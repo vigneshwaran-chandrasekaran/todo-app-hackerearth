@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Menu, Dropdown, message } from 'antd';
+import PropTypes from 'prop-types';
 import { API } from '../../services';
 import { TODO_STATUS } from '../../helpers/constants';
 import { updatedTodoList } from '../../store/actions/api.actions';
@@ -33,3 +34,10 @@ export default function TodoStatusChange({ data }) {
 
 	return <Dropdown.Button overlay={menu}>Edit status</Dropdown.Button>;
 }
+
+TodoStatusChange.propTypes = {
+	data: PropTypes.shape({
+		_id: PropTypes.string,
+		status: PropTypes.string,
+	}),
+};

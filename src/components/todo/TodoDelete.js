@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import PropTypes from 'prop-types';
 import { API } from '../../services';
 import { updatedTodoList } from '../../store/actions/api.actions';
 
@@ -32,3 +33,9 @@ export default function TodoDelete({ data }) {
 		</Popconfirm>
 	);
 }
+
+TodoDelete.propTypes = {
+	data: PropTypes.shape({
+		_id: PropTypes.string,
+	}),
+};

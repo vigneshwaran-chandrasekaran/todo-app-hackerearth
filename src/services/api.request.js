@@ -83,11 +83,12 @@ class ApiRequestClass {
 				} else {
 					this.handleCommonErrors(data);
 				}
-			} catch (error) {
+			} catch (e) {
 				toaster.error('Something went wrong please try again');
-				console.log('Unhandled error', error);
+				console.log('Unhandled error', e);
 			}
 		}
+		return null;
 	}
 
 	handleCommonErrors(data) {
@@ -123,20 +124,22 @@ class ApiRequestClass {
 	}
 
 	handle422Error(error, setErrors) {
-		let serverErrors = error.response.data.errors.message
+		const serverErrors = error.response.data.errors.message
 			? error.response.data.errors.message
 			: error.response.data.errors.messages;
 		console.log('422 Error', serverErrors);
-		if (serverErrors && serverErrors.length > 0) {
-			serverErrors = serverErrors[0];
+		if (serverErrors?.length > 0) {
+			const [serverErrorsObj] = serverErrors;
 			const errorKeys = {};
-			for (const key of Object.keys(serverErrors)) {
-				errorKeys[key] = serverErrors[key][0];
-			}
+			Object.keys(serverErrorsObj).forEach((key) => {
+				// eslint-disable-next-line prefer-destructuring
+				errorKeys[key] = serverErrorsObj[key][0];
+			});
 			setErrors(errorKeys);
 		} else {
 			toaster.error(error.response.data.errors.messages[0]);
 		}
+		return null;
 	}
 }
 

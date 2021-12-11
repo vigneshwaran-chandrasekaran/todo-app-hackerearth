@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 const initialState = {};
 
 export function history(state = initialState, action) {

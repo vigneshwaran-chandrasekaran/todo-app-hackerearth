@@ -158,6 +158,7 @@ function TodoForm({ onClose }) {
 									optionFilterProp="children"
 									onChange={(data) => {
 										console.log('setTodoLabel', data);
+										console.log('todoLabel', todoLabel);
 										setTodoLabel(data);
 										setFieldValue('label', data);
 									}}

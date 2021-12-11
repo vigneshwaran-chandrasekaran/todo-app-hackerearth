@@ -16,12 +16,12 @@ export default function Loader() {
 	};
 
 	return (
-		<>
+		<div>
 			{loader && (
 				<div className="loaderbox">
 					<Lottie options={defaultOptions} height={128} width={128} />
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

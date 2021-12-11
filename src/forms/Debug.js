@@ -10,7 +10,7 @@ export function Debug() {
 				background: '#f6f8fa',
 				boxShadow: '0 0 1px  #eee inset',
 			}}
-  >
+		>
 			<div
 				style={{
 					textTransform: 'uppercase',
@@ -39,5 +39,6 @@ export function Debug() {
 					</pre>
 				)}
 			</FormikConsumer>
-         </div>
+		</div>
+	);
 }

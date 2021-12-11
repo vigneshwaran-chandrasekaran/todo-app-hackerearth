@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { SESSION } from '../../services';
 // import { Sidebar } from '../sidebar';
 import { HeadNavbar } from '../common';
@@ -41,5 +42,10 @@ function PrivateRoute({ children, location, ...rest }) {
 	}
 	SESSION.logout();
 }
+
+PrivateRoute.propTypes = {
+	location: PropTypes.object,
+	children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
 
 export default PrivateRoute;

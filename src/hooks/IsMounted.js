@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import { useEffect, useRef } from 'react';
 
 export default function useIsMounted() {

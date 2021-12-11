@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 const CACHE_NAME = 'version-1';
 const urlsToCache = [
 	'/',

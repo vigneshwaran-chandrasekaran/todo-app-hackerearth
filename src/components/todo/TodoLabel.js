@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Tag } from 'antd';
+import PropTypes from 'prop-types';
 import { TODO_LABEL } from '../../helpers/constants';
 
 export default function TodoLabel({ data }) {
@@ -18,3 +19,9 @@ export default function TodoLabel({ data }) {
 	}, [data]);
 	return <Tag color={state.color}>{state.key}</Tag>;
 }
+
+TodoLabel.propTypes = {
+	data: PropTypes.shape({
+		label: PropTypes.string,
+	}),
+};

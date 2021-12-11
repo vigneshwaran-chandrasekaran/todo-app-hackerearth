@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TodoDate, TodoActionControls, TodoLabel } from '.';
 
 export default function TodoBox(props) {
@@ -14,3 +15,10 @@ export default function TodoBox(props) {
 		</div>
 	);
 }
+
+TodoBox.propTypes = {
+	data: PropTypes.shape({
+		title: PropTypes.string,
+		description: PropTypes.string,
+	}),
+};

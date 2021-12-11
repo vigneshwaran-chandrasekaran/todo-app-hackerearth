@@ -41,20 +41,20 @@ export default function TodoList() {
 		/**
 		 * find label id from selected label checkboxes
 		 */
-		const labels = TODO_LABEL.filter((label) => state.checkedList.includes(label.key)).map(
-			(todo) => todo.id
-		);
+		const labelsSelected = TODO_LABEL.filter((label) =>
+			state.checkedList.includes(label.key)
+		).map((todo) => todo.id);
 
 		/**
 		 * filter out todo based on selected labels
 		 */
-		const filtered = todos.filter((todo) => labels.includes(todo.label));
+		const filtered = todos.filter((todo) => labelsSelected.includes(todo.label));
 
 		/**
 		 * Group the todos based on status (New, inprogress, completed)
 		 */
-		const grouped = mapValues(groupBy(filtered, 'status'));
-		setGrouped(grouped);
+		const groupedFiltered = mapValues(groupBy(filtered, 'status'));
+		setGrouped(groupedFiltered);
 	}, [todos, state]);
 
 	const onChange = (checkedList) => {

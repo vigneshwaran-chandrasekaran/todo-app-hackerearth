@@ -8,10 +8,9 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 // Add a request interceptor
 axios.interceptors.request.use(
-	function (config) {
+	(config) => {
 		// console.log('request interceptors', config.url);
 		// Do something before request is sent
-
 		try {
 			if (SESSION.isLoggedIn()) {
 				config.headers.Authorization = `Bearer ${SESSION.token}`;
@@ -19,27 +18,25 @@ axios.interceptors.request.use(
 		} catch (error) {
 			console.log('catch', error);
 		}
-
 		return config;
 	},
-	function (error) {
+	(error) => {
 		// Do something with request error
-		return Promise.reject(error);
+		Promise.reject(error);
 	}
 );
 
 // Add a response interceptor
 axios.interceptors.response.use(
-	function (response) {
+	(response) =>
 		// console.log('response interceptors', response);
 		// Any status code that lie within the range of 2xx cause this function to trigger
 		// Do something with response data
-		return response;
-	},
-	function (error) {
+		response,
+	(error) => {
 		// Any status codes that falls outside the range of 2xx cause this function to trigger
 		// Do something with response error
-		return Promise.reject(error);
+		Promise.reject(error);
 	}
 );
 
